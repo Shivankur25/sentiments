@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head >
+        <script > 
+            window.addEventListener('DOMContentLoaded', event => {
+                // Navbar shrink function
+                var navbarShrink = function () {
+                const navbarCollapsible = document.body.querySelector('#mainNav');
+                if (!navbarCollapsible) {
+                   return;
+                }
+                if (window.scrollY === 0) {
+                    navbarCollapsible.classList.remove('navbar-shrink')
+                } else {
+                    navbarCollapsible.classList.add('navbar-shrink')
+                }
+
+                };
+
+            // Shrink the navbar 
+            navbarShrink();
+            // Shrink the navbar when page is scrolled
+            document.addEventListener('scroll', navbarShrink);
+            const mainNav = document.body.querySelector('#mainNav');
+            if (mainNav) {
+                new bootstrap.ScrollSpy(document.body, {
+                    target: '#mainNav',
+                    offset: 74,
+                });
+            };
+
+            // Collapse responsive navbar when toggler is visible
+            const navbarToggler = document.body.querySelector('.navbar-toggler');
+            const responsiveNavItems = [].slice.call(
+                document.querySelectorAll('#navbarResponsive .nav-link')
+            );
+            responsiveNavItems.map(function (responsiveNavItem) {
+                responsiveNavItem.addEventListener('click', () => {
+                    if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                        navbarToggler.click();
+                    }
+                    });
+                });
+            });
+        </script>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sentiment Analysis</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <link href="static/css/styles.css" rel="stylesheet" />
+    </head>
+
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Sentiment Analysis</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#information">More Info!</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="{{ url_for('analysis')}}">Try Model</a></li>  
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <br>
+                        <p class="text-white font-weight-bold" style= "font-size: 200%;" >"People will forget what you said, people will forget what you did, but people will never forget how you made them feel"</h2><br><br>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 " >Have you wondered what sentiment analysis really is?<br>
+                        <br>This powerful quote by <strong> Maya Angelou</strong> explains why we feel so <br>passionately positive about some brands and so strongly negative about others.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <p style=" color: black;" ><br><br><br><br>These days people can express their feelings and emotions in many ways — through social media platform such as Twitter, Instagram, blog posts, etc. They can also freely provide feedback about various products and services.</p><br>
+                        <p style=" color: black;"> Companies like Google and Apple spend so much on their customer experience maybe that’s why they are one of the top trusted brands in the world. But it is difficult to read each and every review of customers, so brands nowadays use machine learning to predict their customer behaviour. We have build a similar api which shows wheather review is positive or negative.</p>
+                        <br><br>
+                        <a class="btn btn-light btn-xl"  href="{{ url_for('analysis')}}" style="color: black;">Try it Now!</a>
+                    <br><br>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <!-- Services-->
+        <!-- Contact-->
+
+
+        <div class="container px-4 px-lg-5" id="information" >
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <br><br>
+                        <h1  >Why Is Sentiment Analysis Important?</h1>
+                        <hr class="divider divider-light" />
+
+                        <p style="text-align: left; ">Since customers express their thoughts and feelings more openly than ever before, sentiment analysis is becoming an essential tool to monitor and understand that sentiment.Automatically analyzing customer feedback, such as opinions in survey responses and social media conversations, allows brands to learn what makes customers happy or frustrated, so that they can tailor products and services to meet their customers’ needs.
+                        <br><br>
+                        For example, using sentiment analysis to automatically analyze 4,000+ customer satisfaction surveys about your product could help you discover if customers are happy about your pricing plans and customer service.Maybe you want to gauge brand sentiment on social media, in real time and over time, so you can detect disgruntled customers immediately and respond as soon as possible.</p>
+                        <br><br>
+
+                        <h1 >What are the Main Challenges of Sentiment Analysis?</h1>
+                        <br><br>
+                        <p style="text-align: left; ">Despite being a promising tool for various businesses that helps to improve their products and services, sentiment analysis is yet to overcome certain hurdles. For instance, it’s still difficult for technology to show the difference between messages with genuine attitude and sarcasm, fake messages and real ones or pinpoint the context behind a certain word.
+                        <br><br>
+                        In addition, users have a different command of the English language and their grammar or vocabulary might be poor. Users often misspell words, use incorrect sentence constructions, etc., which makes it difficult to use sentiment analysis because of the inconsistency of various users’ language.</p><br>
+                        <br>
+
+                        <h1 >How it is Useful in Business?</h1><br><br>
+                        
+                        <p style="text-align: left; ">Sentiment Analysis can be applied in various ways to serve businesses. Here are the main domains where you can use the analysis.</p><br> 
+                        <ul>
+                            <li style="text-align: left; "><strong>Brand Performance</strong><br>
+                                <p>It can be used for monitoring your brand performance. Brand is a whole system that evokes certain feelings, emotions. associations in a user and makes your company successful or vice versa. Rolex is associated with quality, precision, and luxury, while some brands are associated with affordability, for instance, Tissot, Seiko, and Timex . This is why it’s important to use sentiment analysis to monitor social media channels and detect positive and negative sentiments towards your brand.</p>
+                            </li><br>
+                            <li style="text-align: left; "><strong>Brand Performance of Your Competitors</strong><br>
+                                <p>Sentiment analysis can be used not only for monitoring sentiments about your brand but also for your competitors. It is useful especially those companies that are in the same niche as you. Thus, you can see what kind of products and services users like or dislike about your rival and adjust your business strategy accordingly.</p>
+                            </li><br>
+                            <li style="text-align: left; "><strong>Crisis Prevention</strong><br>
+                                <p>It’s always better to prevent a crisis from happening than dealing with its disastrous aftermath. In this case, sentiment analysis comes in handy. By monitoring real-time comments or reviews, you can easily detect negative sentiments and avert a disastrous crisis. For instance, as soon as you detect a lot of negativity towards your brand, you can assess the reason behind it and come up with a strategy of how you can avoid negative results for you.</p>
+                            </li><br>
+                        </ul>
+                        <br>
+
+                        <h1 >Future of sentiment analysis</h1><br><br>
+                        <p style="text-align: left; ">While it’s difficult to speculate how a relatively immature system might evolve in the the future, there is a general assumption that sentiment analysis needs to move beyond a one-dimensional positive to negative scale. In the same way that politics cannot always be reduced to a position on a left to right scale, there are other kinds of sentiment that cannot be placed on a simple barometer.<br><br>For the future, to truly understand and capture the broad range of emotions that humans express as written word, we need a more sophisticated multidimensional scale.Can text analytics measure skepticism, hope, anxiety, excitement or lack thereof? Yes! And we’ll be making this technology available soon.<br><br><br><br></p>
+                        
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+                
+
+                <div>
+                    <div>
+                        
+                        <div style="text-align: center;">
+                            
+                            <br><br><br>
+                                 <a class="btn btn-light btn-xl"  href="https://en.wikipedia.org/wiki/Sentiment_analysis" style="text-align: center; color: black;">For more detailed Information!</a>
+                            <br><br><br><br>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+ 
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
